@@ -59,8 +59,8 @@ ip add 192.168.103.11 255.255.255.0
 ALL THE PORN SITES THE WORLD ARE OWNED BY 5 COMPANIES:
 
 config t
-NO ip access-list standard NOPORN1
-ip access-list standard NOPORN1
+NO ip access-list standard NOPORNFAP
+ip access-list standard NOPORNFAP
 DENY 66.254.0.0 0.0.255.255
 DENY 104.21.0.0 0.0.255.255
 DENY 68.235.0.0 0.0.255.255
@@ -70,8 +70,29 @@ DENY 208.77.0.0 0.0.255.255
 DENY 172.67.0.0 0.0.255.255
 Permit Any
 Int Gi 1
- ip access-group NOPORN1 in
+ ip access-group NOPORNFAP in
  end
+
+Alternative: use standard ACL 1-99 
+conf t
+no access-list 69
+access-list 69 DENY 66.254.0.0 0.0.255.255
+access-list 69 DENY 104.21.0.0 0.0.255.255
+access-list 69 DENY 68.235.0.0 0.0.255.255
+access-list 69 DENY 104.17.0.0 0.0.255.255
+access-list 69 DENY 88.208.0.0 0.0.255.255
+access-list 69 DENY 208.77.0.0 0.0.255.255
+access-list 69 DENY 172.67.0.0 0.0.255.255
+access-list 69 permit Any
+int gi 1
+ip access-group 69 in
+end
+ORDERS NEW!! Gobyerno: allow all for freedom of expression!
+conf t
+int gi 1
+NO ip access-group 69 in
+end
+
 Task1.2: block admu.edu.ph, dlsu.edu.ph, ccp.edu.ph, ue.edu.ph
 
 ping www.dlsu.edu.ph 172.67.14.0
