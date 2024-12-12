@@ -90,15 +90,33 @@ end
 ORDERS NEW!! Gobyerno: allow all for freedom of expression!
 conf t
 int gi 1
-NO ip access-group 69 in
+NO ip access-group NOPORNFAP in
 end
 
 Task1.2: block admu.edu.ph, dlsu.edu.ph, ccp.edu.ph, ue.edu.ph
 
-ping www.dlsu.edu.ph 172.67.14.0
+ping www.dlsu.edu.ph 172.67.14.0 104.22.36.0
 ping www.ccp.edu.ph 50.6.160.0
 ping www.feu.edu.ph 184.168.125.0
 ping  www.ue.edu.ph 155.137.92.0
+ping www.ust.edu.ph 202.65.183.189
+
+conf t
+NO ip access-list standard NOSCHOOL
+ip access-list standard NOSCHOOL
+DENY 104.22.36.0 0.0.255.255
+DENY 184.168.125.0 0.0.255.255
+DENY 155.137.92.0 0.0.255.255
+DENY 202.65.183.189 0.0.255.255
+Permit Any
+Int Gi 1
+ ip access-group NOSCHOOL in
+ end
+ORDERS NEW!! Gobyerno: allow all for freedom of expression!
+conf t
+int gi 1
+NO ip access-group NOSCHOOL in
+end
 
 TASK2: USE STANDARD ACCESS-LIST TO BLOCK OTHER CONTRIES/CLASSMATE:
 config t
