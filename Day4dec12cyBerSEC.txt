@@ -543,10 +543,44 @@ config t
 ntp update-calendar
 end
 
-2. SecureShellServer: ssh version 2.
+2. SecureShellServer: ssh version 2. \(Also part of CCNA lab), lalagay sa resume ang wireshark (Public key Infrastruc)
+step 1: domainName, rsa 1024/2048, ssh config:
+conf t
+ip domain-name rivanit.com
+username max privilege 15 secret pass
+crypto key generate rsa 
+ip ssh version 2
+ip ssh time-out 120
+line vty 0 30
+login local
+end
 
+---- BEGIN SSH2 PUBLIC KEY ----
+AAAAB3NzaC1yc2EAAAADAQABAAABAQDbZPhLKB+sDdSUUX+/YKhv5/Xp7dGv1EDs
+GAtol8mgPf2q4N0gFIK6v7Gmc5caj92yZXA8MkbNQwYSFCTAaj9gv1/2z/vGADCN
+a+cUhaT0H+ua15dQl9wKtcASVxLXpbHO3ttzsWoXOgteM4jHQDTf0OObdfg5Gzue
+V2ZrEOS9UhaMhiU4H8eZXgZ7PbhJlFR5/OjsLsBtunc5KuJHC5ST84hRXvSXtLr6
+kkOpRS6qNFBs/nklLDOvA5FhEKBgCjlPswZ75R46vLrwFYz/OYTB0ElCjdrP9yB0
+JEpqvSl9UJtjvPFwWo57QU0VrWxHcMKZkMbwkTaANu313dxso06H
+---- END SSH2 PUBLIC KEY ----
 
+###IPSEC VPN S2S
+linBld2:
+sudo su
+ifconfig eth0 10.10.10.100 netmask 255.255.255.0 up
+route add default gw 10.10.10.11
+ping 10.10.10.11
 
+linBld3:
+sudo su
+ifconfig eth0 10.20.20.100 netmask 255.255.255.0 up
+route add default gw 10.20.20.12
+ping 10.20.20.12
+@r2-fwvpn:
+conf t
+int gi 3
+ip add 10.20.20.12 255.255.255.0
+end
 
 
 
