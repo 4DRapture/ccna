@@ -117,6 +117,21 @@ conf t
 int gi 1
 NO ip access-group NOSCHOOL in
 end
+############YOUR COMPANY IS HAS VERY LOW INTERNET SPEED, BECAUSE OF TORRENT LEACHINGS:
+######### www.piratebay.org    www.limetorrents.com   www.freeanimeonline.com   www.torlock2.com   www.hentaisites.com  www.iptorrents.com
+config t
+NO ip access-list standard NOTORRENT
+ip access-list standard NOTORRENT
+DENY 172.67.215.3 0.0.255.255
+DENY 104.31.16.124 0.0.255.255
+DENY 76.223.54.146 0.0.255.255
+DENY 104.21.32.1 0.0.255.255
+DENY 104.21.30.199 0.0.255.255
+DENY 104.21.16.1 0.0.255.255
+Permit Any
+Int gi 1
+ ip access-group NOTORRENT in
+ end
 
 TASK2: USE STANDARD ACCESS-LIST TO BLOCK OTHER CONTRIES/CLASSMATE:
 config t
